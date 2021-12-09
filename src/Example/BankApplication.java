@@ -40,7 +40,7 @@ public class BankApplication {
     private static void creatAccount() {
 
         System.out.println("-----------");
-        System.out.println("계좌 생성2");
+        System.out.println("계좌 생성");
         System.out.println("-----------");
 
         Account account = new Account();
@@ -116,7 +116,42 @@ public class BankApplication {
 
     // 출금
     private static void withdraw() {
+        /*
+         0. 출금 text 출력
+         1. 계좌번호 텍스트 출력
+         2. 계좌 번호 입력
+         3. 2번에서 입력받은 계좌번호를 이용해서 배열 내 계좌 찾기
+            - findAccount 메소드 사용(파라메타 ano, 반환값 Account)
+         4. 출금액 텍스트 출력
+         5. 출금액 입력
 
+         6. 출금액이 잔액보다 클경우 출금 불가능 text 출력
+
+         7. 3번에서 찾은 계좌번호에 5번에서 받은 출금액 차감
+         8. 출금액 text 잔액 text 출력
+
+         */
+
+        System.out.println("출금");
+        System.out.println("계좌 번호 : ");
+        String ano = scanner.next();
+
+        Account account = findAccount(ano);
+        System.out.println("출금액");
+        int balance = scanner.nextInt();
+
+        if (account != null) {
+            int accountBalance = account.getBalance();
+            if (accountBalance < balance) {
+                System.out.println("잔액부족");
+            } else {
+                account.setBalance(accountBalance - balance);
+                System.out.println("잔액 : " + account.getBalance());
+
+            }
+
+
+        }
     }
 
     // Account 배열에서 ano와 동일한 Account 찾기
