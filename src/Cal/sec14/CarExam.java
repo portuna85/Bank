@@ -4,15 +4,16 @@ public class CarExam {
     public static void main(String[] args) {
         Car myCar = new Car();
 
-        myCar.setSpeed(-60);
+        myCar.setSpeed(-70);
+        System.out.println("현재 속도 : "+myCar.getSpeed());
 
-        System.out.println(myCar.isSpeed());
-
-        myCar.setSpeed(60);
+        myCar.setSpeed(73);
+        System.out.println("현재 속도 : "+myCar.getSpeed());
 
         if(!myCar.isStop()) {
             myCar.setStop(true);
         }
-        System.out.println("지금 속도 : "+myCar.isSpeed());
+
+        System.out.println("현재 속도 : "+myCar.getSpeed());
     }
 }
