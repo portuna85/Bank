@@ -1,4 +1,4 @@
-package Example;
+package Cal.haseok;
 
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class BankApplication {
         while (run) {
 
             System.out.println("-------------------------------------------------");
-            System.out.println("1.계좌생성 : 2.계좌목록 : 3.예금 : 4.출금 : 5. 종료 : 99. 계좌삭제");
+            System.out.println("1.계좌생성 : 2.계좌목록 : 3.예금 : 4.출금 : 5.계좌삭제 6. 종료");
             System.out.println("-------------------------------------------------");
             System.out.println("선택 > ");
 
@@ -30,78 +30,14 @@ public class BankApplication {
                 withdraw();
             } else if (selectNo == 5) {
                 run = false;
-            } else if (selectNo == 99) {
-                removeAccount();
             }
         }
         System.out.println("프로그램 종료!");
     }
 
-    // 계좌 삭제
-    public static void removeAccount() {
-
-        /*
-            1. 계좌 삭제 텍스트 생성
-            2. 사용자로 부터 계좌번호 입력 받기
-                - 실패 3. 2번에서 입력받은 계좌번호로 findAccount() 호출해서 계좌 검색
-                - 실패 4. 반환받은 계좌를 null 로 초기화
-            3. accountArray for loop 실행
-            4. 2번에서 입력받은 계좌번호와 일치하는 계좌번호찾기
-            5. 있으면 해당 배열값 null 로 초기화
-                5.1. 계좌 삭제 텍스트 출력 후 return
-            6. 없으면 accountArray 길이 만큼 계속 반복
-            7. 반복문이 끝나도록 없으면 계좌 검색 불가 텍스트 출력
-
-            예외처리
-                - 계좌 유효성 검사
-                - 잔액이 있을경우 계좌 삭제 불가
-         */
-
-        System.out.println("계좌 삭제");
-        System.out.println("계좌 번호를 입력해주세요.");
-
-        String accountNumber = scanner.next();
-
-        for (int i = 0; i < accountArray.length; i++) {
-
-            if (accountArray[i] != null) {
-
-                if (accountArray[i].getAno().equals(accountNumber)) {
-
-                    if (accountArray[i].getBalance() > 0) {
-                        System.out.println("계좌에 잔액이 남아 있어서 삭제 불가 합니다.");
-                        System.out.println("잔액: " + accountArray[i].getBalance());
-                        return;
-                    } else {
-                        accountArray[i] = null;
-                        System.out.println("계좌가 삭제 되었습니다.");
-                        accountList();
-                        return;
-                    }
-                }
-            }
-        }
-
-        System.out.println("검색된 계좌번호가 없습니다.");
-    }
-
 
     // 계좌 생성
     private static void creatAccount() {
-
-        /*
-            0. 계좌 생성 text 출력
-            1. Account 생성자 생성
-            2. 계좌번호 text 출력
-            3. 계좌번호 입력
-            4. 계좌 주 text 출력
-            5. 계좌 주 입력
-            6. 초기금액 text 출력
-            7. 초기금액 입력
-            8. for loop문 이용하여 accountArray[]에 setAno, setOwner, setBalance 입력
-                - accountArray[]에 null인 곳에 입력.
-         */
-
 
         System.out.println("-----------");
         System.out.println("계좌 생성");
@@ -132,32 +68,17 @@ public class BankApplication {
     // 계좌 목록
     private static void accountList() {
 
-        /*
-            0. 계좌 목록 text 출력
-            1. Account 생성자 생성
-            2. for loop문 사용
-               - accountArray의 계좌, 계좌 주, 잔액 출력
-               - accountArray 길이 만큼 반복
-         */
-
         System.out.println("-----------");
         System.out.println("계좌 목록");
         System.out.println("-----------");
 
 
-        Account account = new Account();
-        for(int i=0;i < accountArray.length;i++){
-            if (account != null) {
-                System.out.println(account.getAno() + "  " + account.getOwner() + "  " + account.getBalance());
-            }
-        }
-        /*
         for (Account account : accountArray) {
 
             if (account != null) {
                 System.out.println(account.getAno() + "  " + account.getOwner() + "  " + account.getBalance());
             }
-        }*/
+        }
     }
 
     // 예금
@@ -229,6 +150,10 @@ public class BankApplication {
             }
         }
     }
+
+
+    
+
 
 
     // Account 배열에서 ano와 동일한 Account 찾기
