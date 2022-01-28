@@ -1,26 +1,20 @@
 package review;
 
-public class Car<T, FUCKING> {
+public class Car {
+    private int price;
 
-    private T t;
-    private FUCKING fucking;
+    public void ride() {
+        String name;
+        int speed = 0;
 
-    private User user;
-    private Eat eat;
-
-    public T getT() {
-        return t;
+        int count = 0;
+        while (true) {
+            count++;
+        }
     }
 
-    public void setT(T t) {
-        this.t = t;
-    }
+    public int checkSpeed() {
 
-    public FUCKING getEat() {
-        return fucking;
-    }
-
-    public void setEat(FUCKING fucking) {
-        this.fucking = fucking;
+        return price;
     }
 }

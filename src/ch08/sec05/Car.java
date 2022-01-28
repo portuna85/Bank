@@ -1,6 +1,7 @@
 package ch08.sec05;
 
 public class Car {
+
     Tire[] tires = {
             new Hankook(),
             new Hankook(),
@@ -10,8 +11,8 @@ public class Car {
 
 
     void run() {
-        for(Tire tire : tires) {
+        for (Tire tire : tires) {
             tire.roll();
-            }
+        }
     }
 }
