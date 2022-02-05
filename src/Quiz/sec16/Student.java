@@ -11,7 +11,7 @@ public class Student {
         this.name = name;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this.studentNum.equals(o.studentNum)) {
             Student student = (Student) o;
@@ -25,4 +25,5 @@ public class Student {
     public int hashCode() {
         return studentNum.hashCode();
     }
+}*/
 }
