@@ -43,16 +43,24 @@ public class BankApplication {
         System.out.println("계좌 생성2");
         System.out.println("-----------");
 
-        Account account = new Account();
-
         System.out.println("계좌 번호: ");
-        account.setAno(scanner.next());
+        String ano = scanner.next();
+        if (findAccount(ano) != null) {
+            System.out.println("이미 존재하는 계좌번호입니다.");
+            return;
+        }
 
         System.out.println("계좌 주: ");
-        account.setOwner(scanner.next());
+        String owner = scanner.next();
 
         System.out.println("초기금액 : ");
-        account.setBalance(scanner.nextInt());
+        int balance = scanner.nextInt();
+        if (balance < 0) {
+            System.out.println("초기금액은 0 이상이어야 합니다.");
+            return;
+        }
+
+        Account account = new Account(ano, owner, balance);
 
         for (int i = 0; i < accountArray.length; i++) {
 
@@ -104,10 +112,12 @@ public class BankApplication {
             System.out.println("조회된 계좌가 없없습니다");
         } else {
             System.out.println("예금 액 : ");
-            int balance = scanner.nextInt();
-            int accountBalance = account.getBalance();
-
-            account.setBalance(balance + accountBalance);
+            int amount = scanner.nextInt();
+            if (amount <= 0) {
+                System.out.println("예금액은 0보다 커야 합니다.");
+                return;
+            }
+            account.setBalance(account.getBalance() + amount);
             System.out.println("예금에 성공했습니다.");
 
         }
@@ -116,6 +126,30 @@ public class BankApplication {
 
     // 출금
     private static void withdraw() {
+        System.out.println("출금");
+        System.out.println("계좌번호 : ");
+        String ano = scanner.next();
+        Account account = findAccount(ano);
+
+        if (account == null) {
+            System.out.println("조회된 계좌가 없습니다.");
+            return;
+        }
+
+        System.out.println("출금 액 : ");
+        int amount = scanner.nextInt();
+        if (amount <= 0) {
+            System.out.println("출금액은 0보다 커야 합니다.");
+            return;
+        }
+
+        if (account.getBalance() < amount) {
+            System.out.println("잔액이 부족합니다.");
+            return;
+        }
+
+        account.setBalance(account.getBalance() - amount);
+        System.out.println("출금에 성공했습니다.");
 
     }
 
